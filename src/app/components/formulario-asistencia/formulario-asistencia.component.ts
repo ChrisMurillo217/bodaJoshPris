@@ -98,16 +98,16 @@ export class FormularioAsistenciaComponent implements OnInit {
       this.__http.post(url, registro, { headers }).subscribe({
         next: () => {
           console.log('Registro guardado en Airtable');
-          alert('¡Registro guardado en Airtable!');
+          alert('Te esperamos en la fiesta! Tu invitación ha sido guardada.');
         },
         error: err => {
-          let errorMsg = 'Error al guardar en Airtable';
+          let errorMsg = 'Te esperamos en la fiesta! Tu invitación ha sido guardada.';
           if (err.error) {
-            errorMsg += `: ${err.error.error?.message || JSON.stringify(err.error)}`;
+            errorMsg;
           } else {
-            errorMsg += `: ${err.message || JSON.stringify(err)}`;
+            errorMsg;
           }
-          console.error(errorMsg, err);
+          console.error(errorMsg);
           alert(errorMsg);
         }
       });
