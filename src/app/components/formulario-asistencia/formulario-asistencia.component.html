@@ -1,0 +1,93 @@
+<div class="contenedor-form">
+  <p-card styleClass="form-card">
+    <h2>💍 Formulario de Asistencia</h2>
+    <!-- Formulario solo visible si NO hay QR -->
+    <form *ngIf="!qrCode" (ngSubmit)="generarQr()" #asistenciaForm="ngForm" class="formulario">
+      <div class="campo">
+        <label>¿Vas a asistir?</label>
+        <div class="radio-group">
+          <p-radioButton
+            name="asistira"
+            [value]="true"
+            [(ngModel)]="asistira"
+            inputId="asistiraSi"
+            required>
+          </p-radioButton>
+          <label for="asistiraSi">Sí</label>
+          <p-radioButton
+            name="asistira"
+            [value]="false"
+            [(ngModel)]="asistira"
+            inputId="asistiraNo">
+          </p-radioButton>
+          <label for="asistiraNo">No</label>
+        </div>
+      </div>
+
+      <div *ngIf="asistira === true">
+        <div class="campo">
+          <label for="nombre">Nombre:</label>
+          <input pInputText type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
+        </div>
+
+        <div class="campo">
+          <label>¿Estás casado?</label>
+          <div class="radio-group">
+            <p-radioButton
+              name="casado"
+              [value]="true"
+              [(ngModel)]="casado"
+              inputId="casadoSi"
+              required>
+            </p-radioButton>
+            <label for="casadoSi">Sí</label>
+            <p-radioButton
+              name="casado"
+              [value]="false"
+              [(ngModel)]="casado"
+              inputId="casadoNo">
+            </p-radioButton>
+            <label for="casadoNo">No</label>
+          </div>
+        </div>
+
+        <div class="campo" *ngIf="casado === true">
+          <label for="nombrePareja">Nombre de la pareja:</label>
+          <input pInputText type="text" id="nombrePareja" [(ngModel)]="nombrePareja" name="nombrePareja" required>
+        </div>
+
+        <div class="boton-centrado">
+          <button pButton type="submit" label="Generar QR" icon="pi pi-qrcode"></button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Mostrar nombres y QR solo si hay QR generado -->
+    <div *ngIf="qrCode" class="qr-contenedor">
+      <div #qrBlock>
+        <h3>
+          <ng-container *ngIf="casado; else soltero">
+            ¡Bienvenidos,<br>
+            {{ nombre }} y {{ nombrePareja }}!
+          </ng-container>
+          <ng-template #soltero>
+            ¡Bienvenido,<br>
+            {{ nombre }}!
+          </ng-template>
+        </h3>
+        <img #qrImg [src]="qrCode" alt="Código QR">
+        <h5>
+          <ng-container *ngIf="casado; else soltero1">
+            Pase para 2 personas
+          </ng-container>
+          <ng-template #soltero1>
+            Pase para 1 persona
+          </ng-template>
+        </h5>
+      </div>
+      <div class="boton-centrado" style="margin-top: 1rem;">
+        <button pButton type="button" label="Descargar QR" icon="pi pi-download" (click)="descargarQR(qrBlock)"></button>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormularioAsistenciaComponent } from './components/formulario-asistencia/formulario-asistencia.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [FormularioAsistenciaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

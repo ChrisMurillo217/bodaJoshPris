@@ -1,0 +1,160 @@
+/* Fondo suave y elegante en tonos verdes */
+body, .contenedor-form {
+  background: linear-gradient(135deg, #f3f7f4 0%, #eaf4ec 100%);
+  min-height: 100vh;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Centrar el contenedor y limitar el ancho */
+.contenedor-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+/* Tarjeta central con sombra y borde verde olivo */
+.form-card {
+  width: 50vw;
+  max-width: 600px;
+  min-width: 320px;
+  background: #fff;
+  border-radius: 24px;
+  border: 2px solid #b7c7a3;
+  box-shadow: 0 8px 32px rgba(183, 199, 163, 0.15);
+  padding: 2rem 2.5rem;
+  margin: 2rem 0;
+}
+
+/* Título elegante */
+.p-card-header {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #6b8f71;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* Campos del formulario */
+.campo {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-size: 1.1rem;
+  color: #6b8f71;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+/* Inputs y radios */
+input[pInputText] {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #b7c7a3;
+  background: #f6faf7;
+  font-size: 1rem;
+  color: #4e5d4e;
+  margin-top: 0.3rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.p-radiobutton .p-radiobutton-box {
+  border: 2px solid #b7c7a3;
+  background: #f6faf7;
+}
+.p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: #6b8f71;
+  background: #b7c7a3;
+}
+.p-radiobutton .p-radiobutton-icon {
+  color: #6b8f71;
+}
+
+/* Botón centrado y elegante */
+.boton-centrado {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+button[pButton] {
+  background: linear-gradient(90deg, #b7c7a3 0%, #6b8f71 100%);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 24px;
+  padding: 0.7rem 2.5rem;
+  box-shadow: 0 4px 16px rgba(183, 199, 163, 0.15);
+  transition: background 0.3s;
+}
+button[pButton]:hover {
+  background: linear-gradient(90deg, #6b8f71 0%, #b7c7a3 100%);
+}
+
+/* QR elegante */
+.qr-contenedor {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.qr-contenedor h3 {
+  color: #6b8f71;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.qr-contenedor img {
+  border: 4px solid #b7c7a3;
+  border-radius: 16px;
+  padding: 0.5rem;
+  background: #f6faf7;
+  box-shadow: 0 2px 12px rgba(183, 199, 163, 0.12);
+  width: 180px;
+  height: 180px;
+}
+.qr-contenedor > div {
+  width: 14.8cm;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 1.2cm 1cm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive para móviles */
+@media (max-width: 900px) {
+  .form-card {
+    width: 90vw;
+    max-width: 98vw;
+    padding: 1rem;
+  }
+}
+
+.p-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #6b8f71;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  width: 100%;
+}
