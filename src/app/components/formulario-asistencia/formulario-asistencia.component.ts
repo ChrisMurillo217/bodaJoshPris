@@ -73,17 +73,16 @@ export class FormularioAsistenciaComponent implements OnInit {
       link.download = `${this.nombre}-invitacion.png`;
       link.click();
 
-      // const AIRTABLE_TOKEN = 'pat8HEH1BY0d9ZOV4.13769a518e3a720c30344437cf2aed9e76f52e197f39e7015d78c93804ee0a9e'; // Tu token personal
-      // const BASE_ID = 'appECycBzowt85U19'; // Tu base ID
-      // const TABLE_NAME = 'Asistencia'; // Cambia por el nombre real de tu tabla
-      // const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
-      // const headers = new HttpHeaders({
-      //   'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
-      //   'Content-Type': 'application/json',
-      //   'Accept': 'application/json',
-      //   'User-Agent': 'WeddingApp/1.0'
-      // });
-      const url = '/.netlify/functions/saveToAirtable';
+      const AIRTABLE_TOKEN = 'pat8HEH1BY0d9ZOV4.13769a518e3a720c30344437cf2aed9e76f52e197f39e7015d78c93804ee0a9e'; // Tu token personal
+      const BASE_ID = 'appECycBzowt85U19'; // Tu base ID
+      const TABLE_NAME = 'Asistencia'; // Cambia por el nombre real de tu tabla
+      const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'User-Agent': 'WeddingApp/1.0'
+      });
 
       const registro = {
         fields: {
@@ -96,7 +95,7 @@ export class FormularioAsistenciaComponent implements OnInit {
         }
       };
 
-      this.__http.post(url, registro).subscribe({
+      this.__http.post(url, registro, { headers }).subscribe({
         next: () => {
           console.log('Registro guardado en Airtable');
           alert('¡Registro guardado en Airtable!');
