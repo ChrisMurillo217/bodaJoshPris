@@ -108,6 +108,7 @@ export class FormularioAsistenciaComponent implements OnInit {
             errorMsg += `: ${err.message || JSON.stringify(err)}`;
           }
           console.error(errorMsg, err);
+          alert(errorMsg);
         }
       });
     }).catch(error => {
