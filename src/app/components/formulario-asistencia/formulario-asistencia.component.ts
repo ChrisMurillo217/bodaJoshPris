@@ -98,6 +98,7 @@ export class FormularioAsistenciaComponent implements OnInit {
       this.__http.post(url, registro, { headers }).subscribe({
         next: () => {
           console.log('Registro guardado en Airtable');
+          alert('¡Registro guardado en Airtable!');
         },
         error: err => {
           let errorMsg = 'Error al guardar en Airtable';
@@ -107,10 +108,12 @@ export class FormularioAsistenciaComponent implements OnInit {
             errorMsg += `: ${err.message || JSON.stringify(err)}`;
           }
           console.error(errorMsg, err);
+          alert(errorMsg);
         }
       });
     }).catch(error => {
       console.error('Error al generar QR:', error);
+      alert('Error al generar el código QR. Por favor intenta nuevamente.');
     });
   }
 }
