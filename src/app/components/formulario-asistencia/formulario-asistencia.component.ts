@@ -61,7 +61,11 @@ export class FormularioAsistenciaComponent implements OnInit {
   }
 
   descargarQR(qrBlock: HTMLElement) {
-    html2canvas(qrBlock, { backgroundColor: "#fff" }).then(canvas => {
+    const options = {
+      backgroundColor: "#fff",
+      scale: 0.8 // Reducir tamaño para móviles
+    };
+    html2canvas(qrBlock, options).then(canvas => {
       const link = document.createElement('a');
       this.imageBase64 = canvas.toDataURL('image/png');
 
@@ -75,13 +79,15 @@ export class FormularioAsistenciaComponent implements OnInit {
       const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'User-Agent': 'WeddingApp/1.0'
       });
 
       const registro = {
         fields: {
           asistencia: this.asistira ? 'Sí' : 'No',
-          nombre: this.nombre,
+          nombre: this.nombre || '',
           casado: this.casado ? 'Sí' : 'No',
           nombrePareja: this.nombrePareja,
           fecha: new Date().toISOString(),
@@ -95,10 +101,19 @@ export class FormularioAsistenciaComponent implements OnInit {
           alert('¡Registro guardado en Airtable!');
         },
         error: err => {
-          console.error('Error al guardar en Airtable', err);
-          alert('Error al guardar en Airtable: ' + JSON.stringify(err));
+          let errorMsg = 'Error al guardar en Airtable';
+          if (err.error) {
+            errorMsg += `: ${err.error.error?.message || JSON.stringify(err.error)}`;
+          } else {
+            errorMsg += `: ${err.message || JSON.stringify(err)}`;
+          }
+          console.error(errorMsg, err);
+          alert(errorMsg);
         }
       });
+    }).catch(error => {
+      console.error('Error al generar QR:', error);
+      alert('Error al generar el código QR. Por favor intenta nuevamente.');
     });
   }
 }
